@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
             } else{
                 auth.register(login, pass)
                 Toast.makeText(this, "Пользователь $login добавлен", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, ClickerActivity::class.java))
                 finish()
             }
         }

@@ -46,7 +46,7 @@
         app:srcCompat="@drawable/just_cookie" />
 
     <EditText
-        android:id="@+id/cookieName"
+        android:id="@+id/cookieNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -68,6 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/cookieName" />
+        app:layout_constraintTop_toBottomOf="@+id/cookieNameInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

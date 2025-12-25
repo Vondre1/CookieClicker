@@ -38,7 +38,7 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Введите пароль"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:textColor="#fdfdfd"
 
         android:textColorHint="#6a6a6a" />

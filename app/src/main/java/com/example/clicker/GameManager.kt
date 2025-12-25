@@ -6,29 +6,23 @@ class GameManager(val context: Context) {
     private val prefs = context.getSharedPreferences("game_prefs", Context.MODE_PRIVATE)
 
     companion object {
-        private const val KEY_SCORE = "score"
-        private const val KEY_CLICS = "clicks"
-        private const val KEY_USERNAME =  "name"
+        private const val KEY_CLICS_PREFIX = "clicks_"
     }
 
-    fun addScore(points: Long){
-        val currentScore = getScore()
-        val newScore = currentScore + points
+    private fun clicksKey(coockieType: String, username: String, coockieName: String): String{
+        return KEY_CLICS_PREFIX + coockieType + username
+    }
+
+    fun getClicks(coockieType: String, username: String, coockieName: String): Long{
+        val key = clicksKey(coockieType, username, coockieName)
+        return prefs.getLong(key, 0L)
+    }
+
+    fun addClick(clicks: Long, coockieType: String, username: String, coockieName: String){
+        val key = clicksKey(coockieType, username, coockieName)
+        val current = prefs.getLong(key ,0L)
         prefs.edit()
-            .putLong(KEY_SCORE, newScore)
+            .putLong(key, current + clicks)
             .apply()
-    }
-    fun getScore(): Long{
-        return prefs.getLong(KEY_SCORE, 0L)
-    }
-    fun addClick(clicks: Long){
-        val currentClick = getClick()
-        val newClick = currentClick + clicks
-        prefs.edit()
-            .putLong(KEY_CLICS, newClick)
-            .apply()
-    }
-    fun getClick(): Long{
-        return prefs.getLong(KEY_CLICS, 0L)
     }
 }

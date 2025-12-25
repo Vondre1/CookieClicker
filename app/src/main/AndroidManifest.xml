@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clicker">
         <activity
-            android:name=".item_cookie_spinner"
+            android:name=".itemCookieSpinner"
             android:exported="false" />
         <activity
             android:name=".CookieSpinnerActivity"

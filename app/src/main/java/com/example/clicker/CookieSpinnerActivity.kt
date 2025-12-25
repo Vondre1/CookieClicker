@@ -1,5 +1,6 @@
 package com.example.clicker
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -17,9 +18,11 @@ class CookieSpinnerActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_cookie_spinner)
 
+        val cookieChoose = AuthManager(this)
+
         val cookieSpinner: Spinner = findViewById(R.id.cookie_spinner)
         val cookieImage: ImageView = findViewById(R.id.cookieImage)
-        val cookieName: EditText = findViewById(R.id.cookieName)
+        val cookieNameInput: EditText = findViewById(R.id.cookieNameInput)
         val back: ConstraintLayout = findViewById(R.id.background)
         val button: Button = findViewById(R.id.start)
 
@@ -41,6 +44,7 @@ class CookieSpinnerActivity : AppCompatActivity() {
             )
         )
 
+        var selectedCookie = cookies[0]
         val adapter = CookieAdapter(this, cookies)
         cookieSpinner.adapter = adapter
 
@@ -51,9 +55,8 @@ class CookieSpinnerActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                val selectedCookie = cookies[position]
+                selectedCookie = cookies[position]
                 cookieImage.setImageResource(selectedCookie.imageId)
-                val selectedCookieName = selectedCookie.name
                 back.setBackgroundResource(selectedCookie.backId)
             }
 
@@ -61,12 +64,19 @@ class CookieSpinnerActivity : AppCompatActivity() {
             }
         }
 
-//        button.setOnClickListener {
-//            val cookieUserName = cookieName.text.toString().trim()
-//
-//            if (cookieUserName.isEmpty()){
-//                cookieUserName = selectedCookieName
-//            }
-//        }
+        button.setOnClickListener {
+            var finalCookieName = cookieNameInput.text.toString().trim()
+
+            if (finalCookieName.isEmpty()){
+                finalCookieName = selectedCookie?.name ?: "Печенье"
+            }
+            var intent = Intent(this, ClickerActivity::class.java)
+            intent.putExtra("NAME", selectedCookie.name)
+            intent.putExtra("BACK_ID", selectedCookie.backId)
+            intent.putExtra("IMAGE_ID", selectedCookie.imageId)
+            intent.putExtra("finalCookieName", finalCookieName)
+            startActivity(intent)
+            finish()
+        }
     }
 }
