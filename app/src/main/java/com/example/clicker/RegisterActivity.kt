@@ -11,10 +11,10 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_register)
 
         lateinit var binding: ActivityRegisterBinding
         binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val auth = AuthManager(this)
         if (auth.isLoggedIn()) {

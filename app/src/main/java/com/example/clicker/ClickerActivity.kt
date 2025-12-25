@@ -11,12 +11,10 @@ import com.example.clicker.databinding.ActivityClickerBinding
 class ClickerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         lateinit var binding: ActivityClickerBinding
+        binding = ActivityClickerBinding.inflate(layoutInflater)
 
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        binding = ActivityClickerBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.clickerBackground) { v, insets ->
@@ -27,10 +25,8 @@ class ClickerActivity : AppCompatActivity() {
             insets
         }
 
-        val cookieName = intent.getStringExtra("NAME")
         val back_id = intent.getIntExtra("BACK_ID", R.drawable.background_just_cookie)
         val image_id = intent.getIntExtra("IMAGE_ID", R.drawable.just_cookie)
-        val finalCookieName = intent.getStringExtra("finalCookieName")
 
         binding.clickerBackground.setBackgroundResource(back_id)
         binding.cookieImage.setImageResource(image_id)

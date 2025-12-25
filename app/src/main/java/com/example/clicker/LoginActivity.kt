@@ -11,10 +11,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
 
         lateinit var binding: ActivityLoginBinding
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val auth = AuthManager(this)
         if (auth.isLoggedIn()) {
