@@ -68,9 +68,9 @@ class CookieSpinnerActivity : AppCompatActivity() {
             var finalCookieName = cookieNameInput.text.toString().trim()
 
             if (finalCookieName.isEmpty()){
-                finalCookieName = selectedCookie?.name ?: "Печенье"
+                finalCookieName = selectedCookie.name ?: "Печенье"
             }
-            var intent = Intent(this, ClickerActivity::class.java)
+            val intent = Intent(this, ClickerActivity::class.java)
             intent.putExtra("NAME", selectedCookie.name)
             intent.putExtra("BACK_ID", selectedCookie.backId)
             intent.putExtra("IMAGE_ID", selectedCookie.imageId)

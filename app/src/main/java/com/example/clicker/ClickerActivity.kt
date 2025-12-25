@@ -13,6 +13,8 @@ class ClickerActivity : AppCompatActivity() {
         lateinit var binding: ActivityClickerBinding
         binding = ActivityClickerBinding.inflate(layoutInflater)
 
+        val gameManager = GameManager(this)
+
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(binding.root)
@@ -27,9 +29,18 @@ class ClickerActivity : AppCompatActivity() {
 
         val back_id = intent.getIntExtra("BACK_ID", R.drawable.background_just_cookie)
         val image_id = intent.getIntExtra("IMAGE_ID", R.drawable.just_cookie)
+        val login = intent.getStringExtra("LOGIN").toString()
 
         binding.clickerBackground.setBackgroundResource(back_id)
         binding.cookieImage.setImageResource(image_id)
+
+        binding.cookieCounter.setText(gameManager.getClicks(login).toString())
+
+
+
+
+
+
         val auth = AuthManager(this)
         binding.logout.setOnClickListener {
             auth.logout()

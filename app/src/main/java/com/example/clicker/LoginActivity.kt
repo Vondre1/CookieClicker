@@ -34,7 +34,9 @@ class LoginActivity : AppCompatActivity() {
             if (login.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_LONG).show()
             } else if (auth.login(login, pass)) {
-                startActivity(Intent(this, ClickerActivity::class.java))
+                val intent = Intent(this, ClickerActivity::class.java)
+                intent.putExtra("LOGIN", login)
+                startActivity(intent)
                 finish()
             } else{
                 Toast.makeText(this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show()

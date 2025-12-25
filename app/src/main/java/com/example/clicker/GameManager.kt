@@ -9,17 +9,17 @@ class GameManager(val context: Context) {
         private const val KEY_CLICS_PREFIX = "clicks_"
     }
 
-    private fun clicksKey(username: String): String{
-        return KEY_CLICS_PREFIX + username
+    private fun clicksKey(login: String): String{
+        return KEY_CLICS_PREFIX + login
     }
 
-    fun getClicks(username: String): Long{
-        val key = clicksKey(username)
+    fun getClicks(login: String): Long{
+        val key = clicksKey(login)
         return prefs.getLong(key, 0L)
     }
 
-    fun addClick(clicks: Long, username: String){
-        val key = clicksKey(username)
+    fun addClick(clicks: Long, login: String){
+        val key = clicksKey(login)
         val current = prefs.getLong(key ,0L)
         prefs.edit()
             .putLong(key, current + clicks)
